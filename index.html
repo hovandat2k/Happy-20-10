@@ -1,180 +1,156 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thiệp Chúc Mừng 20/10 💐</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fcb69f, #ffdde1);
-      background-size: 400% 400%;
-      animation: gradientShift 10s ease infinite;
-      font-family: 'Poppins', sans-serif;
-      color: #fff;
-      text-align: center;
-      position: relative;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chúc Mừng 20/10</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(180deg, #ffe6f2 0%, #ffd6e8 100%);
+    overflow: hidden;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+  }
 
-    @keyframes gradientShift {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
+  .container {
+    position: relative;
+    text-align: center;
+    top: 30%;
+    transform: translateY(-30%);
+    color: #d63384;
+  }
 
-    h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 3em;
-      color: #fff0f6;
-      text-shadow: 0 0 15px #ff80ab;
-      margin: 0.5em;
-      z-index: 2;
-    }
+  h1 {
+    font-size: 2.8em;
+    font-weight: 700;
+    animation: fadeIn 2s ease forwards;
+  }
 
-    #message {
-      font-family: 'Great Vibes', cursive;
-      color: #fff0f6;
-      font-size: 2em;
-      text-shadow: 0 0 15px #ff80ab;
-      width: 85%;
-      line-height: 1.5;
-      margin-top: 1em;
-      z-index: 2;
-      display: none;
-    }
+  #message {
+    font-size: 1.3em;
+    width: 80%;
+    margin: 20px auto;
+    white-space: pre-line;
+    border-right: 3px solid #d63384;
+    overflow: hidden;
+    animation: blinkCursor 0.8s steps(1) infinite;
+    min-height: 120px;
+  }
 
-    button {
-      background: rgba(255,255,255,0.3);
-      border: 2px solid white;
-      color: white;
-      padding: 10px 25px;
-      border-radius: 25px;
-      font-size: 1.2em;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(5px);
-      z-index: 2;
-    }
-    button:hover {
-      background: rgba(255,255,255,0.6);
-      color: #ff4081;
-    }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-    @keyframes fly {
-      to { transform: translateY(-100px); opacity: 0; }
-    }
+  @keyframes blinkCursor {
+    50% { border-color: transparent; }
+  }
 
-    /* 🌸 Cánh hoa sakura */
-    .petal {
-      position: fixed;
-      top: -10px;
-      background-image: url('https://cdn.jsdelivr.net/gh/hovandat2k/sakura-petals@main/sakura1.png');
-      background-size: cover;
-      width: 25px;
-      height: 25px;
-      opacity: 0.9;
-      pointer-events: none;
-      animation: fall linear infinite;
-    }
+  button {
+    padding: 10px 25px;
+    font-size: 1.1em;
+    background-color: #ff80aa;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(255, 128, 170, 0.4);
+  }
 
-    @keyframes fall {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
+  button:hover {
+    background-color: #ff4d94;
+    transform: scale(1.05);
+  }
+
+  /* Hoa rơi */
+  .petal {
+    position: fixed;
+    top: -10px;
+    background-image: url('https://i.imgur.com/7nXnH1C.png'); /* Cánh hoa anh đào thật */
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 25px;
+    height: 25px;
+    opacity: 0.9;
+    animation: fall linear forwards;
+  }
+
+  @keyframes fall {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
     }
-  </style>
+    100% {
+      transform: translateY(110vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+</style>
 </head>
 <body>
-  <h1>💐 Chúc Mừng Ngày Phụ Nữ Việt Nam 20/10 💖</h1>
+  <div class="container">
+    <h1>💖 Chúc Mừng Ngày Phụ Nữ Việt Nam 20/10 💖</h1>
+    <button id="startButton">Bắt đầu lời chúc</button>
+    <div id="message"></div>
+  </div>
 
-  <button id="startBtn">💌 Xem lời chúc</button>
-  <p id="message"></p>
-
-  <audio id="bg-music" autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_07b29b348b.mp3?filename=beautiful-piano-melody-13269.mp3" type="audio/mpeg">
-  </audio>
+  <audio id="bgMusic" src="https://cdn.pixabay.com/download/audio/2023/06/13/audio_f0fce9ab43.mp3?filename=romantic-melody-147049.mp3" autoplay loop></audio>
 
   <script>
-    // 🎆 Hiệu ứng confetti ban đầu
-    setTimeout(() => {
-      confetti({
-        particleCount: 200,
-        spread: 100,
-        origin: { y: 0.7 }
-      });
-    }, 800);
-
-    // 🌺 Tạo hiệu ứng hoa rơi sakura
-    const sakuraImgs = [
-      'https://cdn.jsdelivr.net/gh/hovandat2k/sakura-petals@main/sakura1.png',
-      'https://cdn.jsdelivr.net/gh/hovandat2k/sakura-petals@main/sakura2.png',
-      'https://cdn.jsdelivr.net/gh/hovandat2k/sakura-petals@main/sakura3.png'
-    ];
-
+    // Hiệu ứng hoa anh đào rơi
     function createPetal() {
-      const petal = document.createElement('div');
-      petal.classList.add('petal');
-      const img = sakuraImgs[Math.floor(Math.random() * sakuraImgs.length)];
-      petal.style.backgroundImage = `url(${img})`;
-      petal.style.left = Math.random() * 100 + 'vw';
-      petal.style.animationDuration = (6 + Math.random() * 5) + 's';
-      petal.style.transform = `rotate(${Math.random() * 360}deg)`;
+      const petal = document.createElement("div");
+      petal.classList.add("petal");
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.animationDuration = 5 + Math.random() * 5 + "s";
+      petal.style.opacity = Math.random();
       document.body.appendChild(petal);
-      setTimeout(() => petal.remove(), 11000);
+      setTimeout(() => petal.remove(), 10000);
     }
-    setInterval(createPetal, 300);
+    setInterval(createPetal, 200);
 
-    // 💌 Hiệu ứng đánh máy
-    const text = "Chúc bạn luôn xinh đẹp, rạng ngời và hạnh phúc như những cánh hoa sakura 🌸. Mong rằng mỗi ngày đều mang đến cho bạn thật nhiều niềm vui, bình an và yêu thương 💕";
-    let i = 0;
-    function typeWriter() {
-      if (i < text.length) {
-        document.getElementById("message").innerHTML += text.charAt(i);
+    // Hiệu ứng đánh máy
+    const messages = [
+      "🌸 Chúc bạn một ngày 20/10 thật rực rỡ, đầy niềm vui và yêu thương!",
+      "💐 Cảm ơn bạn vì luôn tỏa sáng, luôn mạnh mẽ và tuyệt vời như chính bạn!",
+      "🌷 Mong rằng mọi điều tốt đẹp nhất sẽ luôn ở bên bạn hôm nay và mãi mãi 💖"
+    ];
+    const messageContainer = document.getElementById("message");
+    const startButton = document.getElementById("startButton");
+
+    function typeMessage(text, callback) {
+      let i = 0;
+      const interval = setInterval(() => {
+        messageContainer.textContent += text[i];
         i++;
-        setTimeout(typeWriter, 60);
-      }
+        if (i === text.length) {
+          clearInterval(interval);
+          if (callback) setTimeout(callback, 1000);
+        }
+      }, 50);
     }
 
-    // 🎵 Tự động bật nhạc (nếu trình duyệt chặn thì click mới phát)
-    const music = document.getElementById("bg-music");
-    document.body.addEventListener("click", () => {
-      if (music.paused) music.play();
-    });
+    function startTyping() {
+      startButton.style.display = "none";
+      messageContainer.textContent = "";
+      let index = 0;
 
-    // 🌈 Khi bấm nút "Xem lời chúc"
-    document.getElementById("startBtn").addEventListener("click", () => {
-      document.getElementById("startBtn").style.display = "none";
-      document.getElementById("message").style.display = "block";
-      typeWriter();
-    });
+      function nextMessage() {
+        if (index < messages.length) {
+          messageContainer.textContent = "";
+          typeMessage(messages[index], () => {
+            index++;
+            setTimeout(nextMessage, 1200);
+          });
+        }
+      }
+      nextMessage();
+    }
 
-    // 💖 Hiệu ứng emoji bật nảy khi click
-    const emojis = ["💐", "🌸", "💖", "🌷", "💞"];
-    document.addEventListener('click', function(e) {
-      const el = document.createElement('span');
-      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-      el.style.position = 'absolute';
-      el.style.left = e.pageX + 'px';
-      el.style.top = e.pageY + 'px';
-      el.style.fontSize = '30px';
-      el.style.animation = 'fly 1s ease-out';
-      el.style.pointerEvents = 'none';
-      document.body.appendChild(el);
-      setTimeout(() => el.remove(), 1000);
-    });
+    startButton.addEventListener("click", startTyping);
   </script>
 </body>
 </html>
