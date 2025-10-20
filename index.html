@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thiệp chúc mừng 20-10</title>
+
+<!-- Font mềm mại -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    min-height:100vh;
+    background: radial-gradient(circle at top left, #fff6fa, #ffeef5 50%, #fffdfc 100%);
+    font-family:'Poppins', sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .container{
+    position:relative;
+    width:400px;
+    height:280px;
+    perspective:1200px;
+  }
+  .card{
+    position:relative;
+    width:100%;
+    height:100%;
+    transform-style:preserve-3d;
+    transition:transform 1.2s cubic-bezier(.2,.9,.3,1.1);
+    cursor:pointer;
+  }
+  .card.open{
+    transform:rotateY(-160deg);
+  }
+  .face{
+    position:absolute;
+    inset:0;
+    backface-visibility:hidden;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 14px 40px rgba(0,0,0,0.1);
+  }
+  /* Mặt trước */
+  .front{
+    background: linear-gradient(135deg,#ffd9eb,#fff0f6);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:#b83b7b;
+  }
+  .front h1{
+    font-family:'Great Vibes', cursive;
+    font-size:46px;
+    color:#c73e7d;
+    text-shadow:0 0 10px rgba(255,180,200,0.6);
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  .front p{
+    font-size:15px;
+    color:#925a73;
+  }
+  @keyframes glow{
+    from{text-shadow:0 0 8px #fff, 0 0 14px #ffb6c9;}
+    to{text-shadow:0 0 18px #ff8ab5, 0 0 30px #ff9dbf;}
+  }
+  .front .ribbon{
+    position:absolute;
+    top:20px;left:-36px;
+    transform:rotate(-12deg);
+    background:linear-gradient(90deg,#ff9ebe,#ffc1d6);
+    color:white;
+    padding:6px 70px;
+    font-weight:bold;
+    font-size:14px;
+    box-shadow:0 6px 16px rgba(255,143,177,0.3);
+    border-radius:6px;
+  }
+  /* Mặt trong */
+  .back{
+    background: linear-gradient(180deg,#fff,#fff9fb);
+    transform:rotateY(180deg);
+    text-align:center;
+    padding:28px;
+  }
+  .back h2{
+    font-family:'Great Vibes', cursive;
+    color:#e86ea6;
+    font-size:34px;
+    margin-bottom:8px;
+  }
+  .back p{
+    color:#7a5a66;
+    line-height:1.6;
+    font-size:15px;
+  }
+  .heart{
+    font-size:46px;
+    animation: beat 1s infinite;
+    margin-top:10px;
+  }
+  @keyframes beat{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.2);}
+  }
+  button{
+    border:none;
+    border-radius:10px;
+    margin-top:18px;
+    padding:10px 16px;
+    font-weight:bold;
+    cursor:pointer;
+    background:linear-gradient(90deg,#ff8fb1,#ffb3c6);
+    color:#fff;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    transition:transform .2s;
+  }
+  button:hover{transform:scale(1.05);}
+  .close-btn{
+    background:#fff;
+    color:#e86ea6;
+    border:1px solid #ffc1d6;
+  }
+
+  /* Hiệu ứng nền */
+  .bg-heart, .bg-flower{
+    position:absolute;
+    top:0;left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    overflow:hidden;
+  }
+  .bg-heart span, .bg-flower span{
+    position:absolute;
+    bottom:-20px;
+    animation: fall linear forwards;
+  }
+  @keyframes fall{
+    0%{transform:translateY(0) rotate(0deg);opacity:1}
+    100%{transform:translateY(-110vh) rotate(360deg);opacity:0}
+  }
+
+  /* Lấp lánh */
+  .sparkle{
+    position:absolute;
+    background:radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%);
+    border-radius:50%;
+    pointer-events:none;
+    opacity:0;
+    animation: sparkle 3s ease-in-out infinite;
+  }
+  @keyframes sparkle{
+    0%,100%{opacity:0;transform:scale(0);}
+    50%{opacity:1;transform:scale(1);}
+  }
+
+</style>
+</head>
+<body>
+
+<div class="bg-flower" id="bgFlower"></div>
+<div class="bg-heart" id="bgHeart"></div>
+
+<div class="container">
+  <div class="card" id="card">
+    <div class="face front">
+      <div class="ribbon">20/10</div>
+      <h1>Chúc mừng ngày 20-10</h1>
+      <p>Nhấn để mở thiệp nhận bất ngờ ✨</p>
+    </div>
+    <div class="face back">
+      <h2>Gửi đến người phụ nữ tuyệt vời 💐</h2>
+      <p>Chúc bạn luôn dịu dàng, xinh đẹp và rạng rỡ như những cánh hoa hồng.  
+      Mong rằng mỗi ngày đều tràn đầy yêu thương và niềm vui!</p>
+      <div class="heart">❤️</div>
+      <button id="closeBtn" class="close-btn">Đóng thiệp</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const card=document.getElementById('card');
+const closeBtn=document.getElementById('closeBtn');
+card.addEventListener('click',()=>{card.classList.toggle('open');});
+closeBtn.addEventListener('click',(e)=>{e.stopPropagation();card.classList.remove('open');});
+
+// Hoa và tim rơi
+const bgFlower=document.getElementById('bgFlower');
+const bgHeart=document.getElementById('bgHeart');
+
+function createFalling(el,emoji){
+  const span=document.createElement('span');
+  span.innerText=emoji;
+  span.style.left=Math.random()*100+'%';
+  span.style.fontSize=(Math.random()*20+14)+'px';
+  span.style.animationDuration=(Math.random()*4+4)+'s';
+  span.style.animationDelay=(Math.random()*2)+'s';
+  el.appendChild(span);
+  setTimeout(()=>{el.removeChild(span);},6000);
+}
+
+setInterval(()=>{createFalling(bgFlower,'🌸');},400);
+setInterval(()=>{createFalling(bgHeart,'💖');},700);
+
+// Lấp lánh
+for(let i=0;i<20;i++){
+  const s=document.createElement('div');
+  s.classList.add('sparkle');
+  s.style.width=s.style.height=Math.random()*8+6+'px';
+  s.style.left=Math.random()*100+'%';
+  s.style.top=Math.random()*100+'%';
+  s.style.animationDelay=Math.random()*3+'s';
+  document.body.appendChild(s);
+}
+</script>
+
+</body>
+</html>
