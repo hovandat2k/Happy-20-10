@@ -1,224 +1,125 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Thiệp chúc mừng 20-10</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thiệp chúc mừng 20/10 💐</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+      background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fcb69f, #ffdde1);
+      background-size: 400% 400%;
+      animation: gradientShift 10s ease infinite;
+    }
 
-<!-- Font mềm mại -->
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    @keyframes gradientShift {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
 
-<style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{
-    min-height:100vh;
-    background: radial-gradient(circle at top left, #fff6fa, #ffeef5 50%, #fffdfc 100%);
-    font-family:'Poppins', sans-serif;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-  }
-  .container{
-    position:relative;
-    width:400px;
-    height:280px;
-    perspective:1200px;
-  }
-  .card{
-    position:relative;
-    width:100%;
-    height:100%;
-    transform-style:preserve-3d;
-    transition:transform 1.2s cubic-bezier(.2,.9,.3,1.1);
-    cursor:pointer;
-  }
-  .card.open{
-    transform:rotateY(-160deg);
-  }
-  .face{
-    position:absolute;
-    inset:0;
-    backface-visibility:hidden;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 14px 40px rgba(0,0,0,0.1);
-  }
-  /* Mặt trước */
-  .front{
-    background: linear-gradient(135deg,#ffd9eb,#fff0f6);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    color:#b83b7b;
-  }
-  .front h1{
-    font-family:'Great Vibes', cursive;
-    font-size:46px;
-    color:#c73e7d;
-    text-shadow:0 0 10px rgba(255,180,200,0.6);
-    animation: glow 2s ease-in-out infinite alternate;
-  }
-  .front p{
-    font-size:15px;
-    color:#925a73;
-  }
-  @keyframes glow{
-    from{text-shadow:0 0 8px #fff, 0 0 14px #ffb6c9;}
-    to{text-shadow:0 0 18px #ff8ab5, 0 0 30px #ff9dbf;}
-  }
-  .front .ribbon{
-    position:absolute;
-    top:20px;left:-36px;
-    transform:rotate(-12deg);
-    background:linear-gradient(90deg,#ff9ebe,#ffc1d6);
-    color:white;
-    padding:6px 70px;
-    font-weight:bold;
-    font-size:14px;
-    box-shadow:0 6px 16px rgba(255,143,177,0.3);
-    border-radius:6px;
-  }
-  /* Mặt trong */
-  .back{
-    background: linear-gradient(180deg,#fff,#fff9fb);
-    transform:rotateY(180deg);
-    text-align:center;
-    padding:28px;
-  }
-  .back h2{
-    font-family:'Great Vibes', cursive;
-    color:#e86ea6;
-    font-size:34px;
-    margin-bottom:8px;
-  }
-  .back p{
-    color:#7a5a66;
-    line-height:1.6;
-    font-size:15px;
-  }
-  .heart{
-    font-size:46px;
-    animation: beat 1s infinite;
-    margin-top:10px;
-  }
-  @keyframes beat{
-    0%,100%{transform:scale(1);}
-    50%{transform:scale(1.2);}
-  }
-  button{
-    border:none;
-    border-radius:10px;
-    margin-top:18px;
-    padding:10px 16px;
-    font-weight:bold;
-    cursor:pointer;
-    background:linear-gradient(90deg,#ff8fb1,#ffb3c6);
-    color:#fff;
-    box-shadow:0 4px 12px rgba(0,0,0,0.1);
-    transition:transform .2s;
-  }
-  button:hover{transform:scale(1.05);}
-  .close-btn{
-    background:#fff;
-    color:#e86ea6;
-    border:1px solid #ffc1d6;
-  }
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3em;
+      margin-top: 2em;
+      color: #fff0f6;
+      text-shadow: 0 0 15px #ff80ab;
+    }
 
-  /* Hiệu ứng nền */
-  .bg-heart, .bg-flower{
-    position:absolute;
-    top:0;left:0;
-    width:100%;
-    height:100%;
-    pointer-events:none;
-    overflow:hidden;
-  }
-  .bg-heart span, .bg-flower span{
-    position:absolute;
-    bottom:-20px;
-    animation: fall linear forwards;
-  }
-  @keyframes fall{
-    0%{transform:translateY(0) rotate(0deg);opacity:1}
-    100%{transform:translateY(-110vh) rotate(360deg);opacity:0}
-  }
+    p {
+      font-size: 1.4em;
+      margin: 1em auto;
+      width: 80%;
+      line-height: 1.6;
+    }
 
-  /* Lấp lánh */
-  .sparkle{
-    position:absolute;
-    background:radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%);
-    border-radius:50%;
-    pointer-events:none;
-    opacity:0;
-    animation: sparkle 3s ease-in-out infinite;
-  }
-  @keyframes sparkle{
-    0%,100%{opacity:0;transform:scale(0);}
-    50%{opacity:1;transform:scale(1);}
-  }
+    button {
+      background: rgba(255,255,255,0.3);
+      border: 2px solid white;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+    button:hover {
+      background: rgba(255,255,255,0.6);
+      color: #ff4081;
+    }
 
-</style>
+    #message {
+      font-family: 'Great Vibes', cursive;
+      color: #fff0f6;
+      font-size: 2em;
+      text-shadow: 0 0 15px #ff80ab;
+    }
+
+    @keyframes fly {
+      to { transform: translateY(-100px); opacity: 0; }
+    }
+  </style>
 </head>
 <body>
+  <h1>💐 Chúc Mừng Ngày Phụ Nữ Việt Nam 20/10 💖</h1>
+  <p id="message"></p>
+  <button onclick="toggleMusic()">🎶 Bật/Tắt Nhạc</button>
 
-<div class="bg-flower" id="bgFlower"></div>
-<div class="bg-heart" id="bgHeart"></div>
+  <audio id="bg-music" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_07b29b348b.mp3?filename=beautiful-piano-melody-13269.mp3" type="audio/mpeg">
+  </audio>
 
-<div class="container">
-  <div class="card" id="card">
-    <div class="face front">
-      <div class="ribbon">20/10</div>
-      <h1>Chúc mừng ngày 20-10</h1>
-      <p>Nhấn để mở thiệp nhận bất ngờ ✨</p>
-    </div>
-    <div class="face back">
-      <h2>Gửi đến người phụ nữ tuyệt vời 💐</h2>
-      <p>Chúc bạn luôn dịu dàng, xinh đẹp và rạng rỡ như những cánh hoa hồng.  
-      Mong rằng mỗi ngày đều tràn đầy yêu thương và niềm vui!</p>
-      <div class="heart">❤️</div>
-      <button id="closeBtn" class="close-btn">Đóng thiệp</button>
-    </div>
-  </div>
-</div>
+  <script>
+    // 🎆 Hiệu ứng confetti ban đầu
+    setTimeout(() => {
+      confetti({
+        particleCount: 200,
+        spread: 120,
+        origin: { y: 0.7 }
+      });
+    }, 800);
 
-<script>
-const card=document.getElementById('card');
-const closeBtn=document.getElementById('closeBtn');
-card.addEventListener('click',()=>{card.classList.toggle('open');});
-closeBtn.addEventListener('click',(e)=>{e.stopPropagation();card.classList.remove('open');});
+    // 💌 Hiệu ứng đánh máy cho lời chúc
+    const text = "Chúc bạn luôn xinh đẹp, rạng rỡ như những bông hoa, hạnh phúc tràn đầy và được yêu thương mỗi ngày 💕";
+    let i = 0;
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("message").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 60);
+      }
+    }
+    window.onload = typeWriter;
 
-// Hoa và tim rơi
-const bgFlower=document.getElementById('bgFlower');
-const bgHeart=document.getElementById('bgHeart');
+    // 🎵 Bật / tắt nhạc nền
+    function toggleMusic() {
+      const music = document.getElementById("bg-music");
+      if (music.paused) music.play();
+      else music.pause();
+    }
 
-function createFalling(el,emoji){
-  const span=document.createElement('span');
-  span.innerText=emoji;
-  span.style.left=Math.random()*100+'%';
-  span.style.fontSize=(Math.random()*20+14)+'px';
-  span.style.animationDuration=(Math.random()*4+4)+'s';
-  span.style.animationDelay=(Math.random()*2)+'s';
-  el.appendChild(span);
-  setTimeout(()=>{el.removeChild(span);},6000);
-}
-
-setInterval(()=>{createFalling(bgFlower,'🌸');},400);
-setInterval(()=>{createFalling(bgHeart,'💖');},700);
-
-// Lấp lánh
-for(let i=0;i<20;i++){
-  const s=document.createElement('div');
-  s.classList.add('sparkle');
-  s.style.width=s.style.height=Math.random()*8+6+'px';
-  s.style.left=Math.random()*100+'%';
-  s.style.top=Math.random()*100+'%';
-  s.style.animationDelay=Math.random()*3+'s';
-  document.body.appendChild(s);
-}
-</script>
-
+    // 🌸 Hiệu ứng emoji bật nảy khi click chuột
+    const emojis = ["💐", "🌸", "💖", "🌷", "💞"];
+    document.addEventListener('click', function(e) {
+      const el = document.createElement('span');
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.position = 'absolute';
+      el.style.left = e.pageX + 'px';
+      el.style.top = e.pageY + 'px';
+      el.style.fontSize = '30px';
+      el.style.animation = 'fly 1s ease-out';
+      el.style.pointerEvents = 'none';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 1000);
+    });
+  </script>
 </body>
 </html>
