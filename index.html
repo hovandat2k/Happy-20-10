@@ -3,20 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thiệp chúc mừng 20/10 💐</title>
+  <title>Thiệp Chúc Mừng 20/10 💐</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <style>
     body {
       margin: 0;
       height: 100vh;
-      font-family: 'Poppins', sans-serif;
-      color: #fff;
-      text-align: center;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fcb69f, #ffdde1);
       background-size: 400% 400%;
       animation: gradientShift 10s ease infinite;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      text-align: center;
+      position: relative;
     }
 
     @keyframes gradientShift {
@@ -28,32 +33,10 @@
     h1 {
       font-family: 'Great Vibes', cursive;
       font-size: 3em;
-      margin-top: 2em;
       color: #fff0f6;
       text-shadow: 0 0 15px #ff80ab;
-    }
-
-    p {
-      font-size: 1.4em;
-      margin: 1em auto;
-      width: 80%;
-      line-height: 1.6;
-    }
-
-    button {
-      background: rgba(255,255,255,0.3);
-      border: 2px solid white;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 25px;
-      font-size: 1em;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(5px);
-    }
-    button:hover {
-      background: rgba(255,255,255,0.6);
-      color: #ff4081;
+      margin: 0.5em;
+      z-index: 2;
     }
 
     #message {
@@ -61,19 +44,66 @@
       color: #fff0f6;
       font-size: 2em;
       text-shadow: 0 0 15px #ff80ab;
+      width: 85%;
+      line-height: 1.5;
+      margin-top: 1em;
+      z-index: 2;
+      display: none;
+    }
+
+    button {
+      background: rgba(255,255,255,0.3);
+      border: 2px solid white;
+      color: white;
+      padding: 10px 25px;
+      border-radius: 25px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+      z-index: 2;
+    }
+    button:hover {
+      background: rgba(255,255,255,0.6);
+      color: #ff4081;
     }
 
     @keyframes fly {
       to { transform: translateY(-100px); opacity: 0; }
     }
+
+    /* 🌸 Cánh hoa sakura */
+    .petal {
+      position: fixed;
+      top: -10px;
+      background-image: url('https://cdn.jsdelivr.net/gh/hovandat2k/sakura-petals@main/sakura1.png');
+      background-size: cover;
+      width: 25px;
+      height: 25px;
+      opacity: 0.9;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
   <h1>💐 Chúc Mừng Ngày Phụ Nữ Việt Nam 20/10 💖</h1>
-  <p id="message"></p>
-  <button onclick="toggleMusic()">🎶 Bật/Tắt Nhạc</button>
 
-  <audio id="bg-music" loop>
+  <button id="startBtn">💌 Xem lời chúc</button>
+  <p id="message"></p>
+
+  <audio id="bg-music" autoplay loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_07b29b348b.mp3?filename=beautiful-piano-melody-13269.mp3" type="audio/mpeg">
   </audio>
 
@@ -82,13 +112,33 @@
     setTimeout(() => {
       confetti({
         particleCount: 200,
-        spread: 120,
+        spread: 100,
         origin: { y: 0.7 }
       });
     }, 800);
 
-    // 💌 Hiệu ứng đánh máy cho lời chúc
-    const text = "Chúc bạn luôn xinh đẹp, rạng rỡ như những bông hoa, hạnh phúc tràn đầy và được yêu thương mỗi ngày 💕";
+    // 🌺 Tạo hiệu ứng hoa rơi sakura
+    const sakuraImgs = [
+      'https://cdn.jsdelivr.net/gh/hovandat2k/sakura-petals@main/sakura1.png',
+      'https://cdn.jsdelivr.net/gh/hovandat2k/sakura-petals@main/sakura2.png',
+      'https://cdn.jsdelivr.net/gh/hovandat2k/sakura-petals@main/sakura3.png'
+    ];
+
+    function createPetal() {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      const img = sakuraImgs[Math.floor(Math.random() * sakuraImgs.length)];
+      petal.style.backgroundImage = `url(${img})`;
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.animationDuration = (6 + Math.random() * 5) + 's';
+      petal.style.transform = `rotate(${Math.random() * 360}deg)`;
+      document.body.appendChild(petal);
+      setTimeout(() => petal.remove(), 11000);
+    }
+    setInterval(createPetal, 300);
+
+    // 💌 Hiệu ứng đánh máy
+    const text = "Chúc bạn luôn xinh đẹp, rạng ngời và hạnh phúc như những cánh hoa sakura 🌸. Mong rằng mỗi ngày đều mang đến cho bạn thật nhiều niềm vui, bình an và yêu thương 💕";
     let i = 0;
     function typeWriter() {
       if (i < text.length) {
@@ -97,16 +147,21 @@
         setTimeout(typeWriter, 60);
       }
     }
-    window.onload = typeWriter;
 
-    // 🎵 Bật / tắt nhạc nền
-    function toggleMusic() {
-      const music = document.getElementById("bg-music");
+    // 🎵 Tự động bật nhạc (nếu trình duyệt chặn thì click mới phát)
+    const music = document.getElementById("bg-music");
+    document.body.addEventListener("click", () => {
       if (music.paused) music.play();
-      else music.pause();
-    }
+    });
 
-    // 🌸 Hiệu ứng emoji bật nảy khi click chuột
+    // 🌈 Khi bấm nút "Xem lời chúc"
+    document.getElementById("startBtn").addEventListener("click", () => {
+      document.getElementById("startBtn").style.display = "none";
+      document.getElementById("message").style.display = "block";
+      typeWriter();
+    });
+
+    // 💖 Hiệu ứng emoji bật nảy khi click
     const emojis = ["💐", "🌸", "💖", "🌷", "💞"];
     document.addEventListener('click', function(e) {
       const el = document.createElement('span');
